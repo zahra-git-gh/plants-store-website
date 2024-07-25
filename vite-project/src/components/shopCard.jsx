@@ -1,27 +1,28 @@
 import { IoCloseOutline } from "react-icons/io5";
-import { decreaseItem, deleteOrderItem } from "../services/state/actions/order.actions";
+import {
+  decreaseItem,
+  deleteOrderItem,
+  increaseItem,
+} from "../services/state/actions/order.actions";
 import { useDispatch } from "react-redux";
 import { FiMinus } from "react-icons/fi";
 
+import { GoPlus } from "react-icons/go";
 export function ShopCard({ name, src, quantity, price, offPrice = 0 }) {
-  const dispatch=useDispatch()
-  function minuseBtnHandler(){
-    console.log('dispatch button clicked');
-    if(quantity>1){
-      dispatch(
-        decreaseItem({ name, src, quantity, price, offPrice})
-      )
-
-    }else{
-      dispatch(
-        deleteOrderItem({ name, src, quantity, price, offPrice})
-      )
+  const dispatch = useDispatch();
+  function minuseBtnHandler() {
+    console.log("dispatch button clicked");
+    if (quantity > 1) {
+      dispatch(decreaseItem({ name, src, quantity, price, offPrice }));
+    } else {
+      dispatch(deleteOrderItem({ name, src, quantity, price, offPrice }));
     }
   }
-  function closeBtnHandler(){
-    dispatch(
-      deleteOrderItem({ name, src, quantity, price, offPrice})
-    )
+  function closeBtnHandler() {
+    dispatch(deleteOrderItem({ name, src, quantity, price, offPrice }));
+  }
+  function plusBtnHandler() {
+    dispatch(increaseItem({ name, src, quantity, price, offPrice }));
   }
   return (
     <div className="w-full h-max px-4 min-[600px]:px-24 mb-4 ">
@@ -30,20 +31,30 @@ export function ShopCard({ name, src, quantity, price, offPrice = 0 }) {
           <div className="flex">
             <div
               style={{
-                backgroundImage:
-                  `url(${src})`,
+                backgroundImage: `url(${src})`,
               }}
               className="w-[144px] h-36 bg-cover bg-center"
             ></div>
 
             <div className="px-4 py-2 flex flex-col gap-2">
-              <p style={{overflowWrap:'break-word'}} className="text-xs min-[370px]:text-lg font-medium sm:text-2xl">{name}</p>
-              <p className="text-lg font-thin text-gray-700">{quantity} x {offPrice? offPrice: price}</p>
+              <p
+                style={{ overflowWrap: "break-word" }}
+                className="text-xs min-[370px]:text-lg font-medium sm:text-2xl"
+              >
+                {name}
+              </p>
+              <p className="text-lg font-thin text-gray-700">
+                {quantity} x {offPrice ? offPrice : price}
+              </p>
             </div>
           </div>
           <div className="flex items-center text-2xl pe-2">
-            <FiMinus onClick={minuseBtnHandler} className="cursor-pointer"/>
-            <IoCloseOutline onClick={closeBtnHandler} className="cursor-pointer" />
+            <GoPlus onClick={plusBtnHandler} className="cursor-pointer" />
+            <FiMinus onClick={minuseBtnHandler} className="cursor-pointer" />
+            <IoCloseOutline
+              onClick={closeBtnHandler}
+              className="cursor-pointer"
+            />
           </div>
         </div>
       </div>
