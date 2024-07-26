@@ -22,7 +22,7 @@ export function HomePage() {
     return b.stars - a.stars;
   });
   const filteredPlants = plants.filter(
-    (p) => p.type.toLowerCase() === type.toLowerCase()
+    (p) => p.type.toLowerCase() === type?.toLowerCase()
   );
   console.log(`this is sorted palnts: ${sortedPlants}`, sortedPlants);
   function isSortByStars(data) {
