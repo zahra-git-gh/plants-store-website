@@ -42,14 +42,14 @@ Please upload 1)"the link of your project on your github" and 2)"the link of you
 ## Scores
 #### Home Page:
 
---show cards: 40
+--show cards: 35
 
 (provider 5,
 store 2,
 reducer 3,
 use selector 25)
 
---click on icon: 40
+--click on icon: 35
 
 (reducer 5,
 action creator/type 5,
@@ -77,7 +77,7 @@ action 5,
 reducer 15,
 use dispatch 20)
 
---show table: 30
+--show table: 25
 
 (use selector 25)
 
